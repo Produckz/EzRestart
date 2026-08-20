@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "ezrestart",
+	"version": "${version}",
+	"name": "EzRestart",
+	"description": "Restarts the server when it is empty and flagged. Auto-flags once per day at a configurable time, and adds a /ezrestart command.",
+	"authors": [
+		"producks"
+	],
+	"contact": {
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/ezrestart/icon.png",
+	"environment": "server",
+	"entrypoints": {
+		"main": [
+			"com.producks.ezrestart.EzRestart"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*",
+		"fabric-permissions-api-v0": "*"
+	}
+}
