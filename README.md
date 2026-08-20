@@ -8,14 +8,14 @@ Once per day at a configurable time (default 04:00, with an optional timezone se
 
 ## Commands
 
-- `/ezrestart flag` flags the server to restart the next time it is empty
-- `/ezrestart cancel` clears a pending restart flag
-- `/ezrestart status` shows the current flag and settings
-- `/ezrestart reload` reloads the config from disk
-- `/ezrestart set time <HH:mm>` sets the daily restart time
-- `/ezrestart set auto <true|false>` toggles the daily auto-flag
-- `/ezrestart set timezone <zone>` sets the scheduling timezone (IANA id like `America/New_York`, or `system`)
-- `/ezrestart set timeout <seconds>` sets the shutdown watchdog timeout (0 disables it)
+- `/ezrestart flag` -- flags the server to restart the next time it is empty
+- `/ezrestart cancel` -- clears a pending restart flag
+- `/ezrestart status` -- shows the current flag and settings
+- `/ezrestart reload` -- reloads the config from disk
+- `/ezrestart set time <HH:mm>` -- sets the daily restart time (24hr e.g. 22:30)
+- `/ezrestart set auto <true|false>` -- toggles the daily auto-flag
+- `/ezrestart set timezone <zone>` -- sets the scheduling timezone (IANA id like `America/New_York`, or `system`)
+- `/ezrestart set timeout <seconds>` -- sets the shutdown watchdog timeout (0 disables it)
 
 Commands use Fabric Permissions API nodes (`ezrestart.command.*`) and fall back to vanilla OP levels.
 

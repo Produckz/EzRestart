@@ -33,6 +33,7 @@ public final class EzRestartCommand {
                             () -> Component.literal("EzRestart: server flagged. It will restart the next time it is empty."),
                             true);
                         EzRestart.LOGGER.info("[EzRestart] Flagged for restart by {}.", src.getTextName());
+                        EzRestart.maybeRestart(src.getServer());
                         return 1;
                     }))
                 .then(Commands.literal("cancel")
