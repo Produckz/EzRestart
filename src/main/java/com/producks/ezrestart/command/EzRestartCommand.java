@@ -6,11 +6,9 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.producks.ezrestart.Config;
 import com.producks.ezrestart.EzRestart;
-import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.permissions.PermissionLevel;
 
 import java.time.DateTimeException;
 import java.time.LocalTime;
@@ -23,9 +21,9 @@ public final class EzRestartCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
             Commands.literal("ezrestart")
-                .requires(Permissions.require("ezrestart.command", PermissionLevel.GAMEMASTERS))
+                .requires(source -> source.hasPermission(4))
                 .then(Commands.literal("flag")
-                    .requires(Permissions.require("ezrestart.command.flag", PermissionLevel.OWNERS))
+                    .requires(source -> source.hasPermission(4))
                     .executes(ctx -> {
                         EzRestart.setFlagged(true);
                         CommandSourceStack src = ctx.getSource();
@@ -37,7 +35,7 @@ public final class EzRestartCommand {
                         return 1;
                     }))
                 .then(Commands.literal("cancel")
-                    .requires(Permissions.require("ezrestart.command.cancel", PermissionLevel.OWNERS))
+                    .requires(source -> source.hasPermission(4))
                     .executes(ctx -> {
                         boolean wasFlagged = EzRestart.isFlagged();
                         EzRestart.setFlagged(false);
@@ -52,7 +50,7 @@ public final class EzRestartCommand {
                         return 1;
                     }))
                 .then(Commands.literal("status")
-                    .requires(Permissions.require("ezrestart.command.status", PermissionLevel.GAMEMASTERS))
+                    .requires(source -> source.hasPermission(4))
                     .executes(ctx -> {
                         Config config = EzRestart.getConfig();
                         String msg = String.format(
@@ -66,7 +64,7 @@ public final class EzRestartCommand {
                         return 1;
                     }))
                 .then(Commands.literal("reload")
-                    .requires(Permissions.require("ezrestart.command.reload", PermissionLevel.OWNERS))
+                    .requires(source -> source.hasPermission(4))
                     .executes(ctx -> {
                         EzRestart.reloadConfig();
                         Config config = EzRestart.getConfig();
@@ -81,7 +79,7 @@ public final class EzRestartCommand {
                         return 1;
                     }))
                 .then(Commands.literal("set")
-                    .requires(Permissions.require("ezrestart.command.set", PermissionLevel.OWNERS))
+                    .requires(source -> source.hasPermission(4))
                     .then(Commands.literal("time")
                         .then(Commands.argument("time", StringArgumentType.greedyString())
                             .executes(ctx -> {
